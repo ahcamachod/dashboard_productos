@@ -64,7 +64,7 @@ fact_ciudades = datos.drop_duplicates(subset='Lugar de Compra')[['Lugar de Compr
 
 fact_mensual = datos.set_index('Fecha de Compra').groupby(pd.Grouper(freq='ME'))['Precio'].sum().reset_index()
 fact_mensual['Año'] = fact_mensual['Fecha de Compra'].dt.year
-fact_mensual['Mes'] = fact_mensual['Fecha de Compra'].dt.month_name('es')
+fact_mensual['Mes'] = fact_mensual['Fecha de Compra'].dt.month_name('es_MX.UTF-8')
 
 fact_cat = datos.groupby('Categoría del Producto')[['Precio']].sum().sort_values('Precio',ascending=False)
 
@@ -76,7 +76,7 @@ ventas_ciudades.rename(columns={'Precio':'Cantidad'}, inplace=True)
 
 ventas_mensual = datos.set_index('Fecha de Compra').groupby(pd.Grouper(freq='ME'))['Precio'].count().reset_index()
 ventas_mensual['Año'] = ventas_mensual['Fecha de Compra'].dt.year
-ventas_mensual['Mes'] = ventas_mensual['Fecha de Compra'].dt.month_name('es')
+ventas_mensual['Mes'] = ventas_mensual['Fecha de Compra'].dt.month_name('es_MX.UTF-8')
 ventas_mensual.rename(columns={'Precio':'Cantidad'}, inplace=True)
 
 ventas_cat = datos.groupby('Categoría del Producto')[['Precio']].count().sort_values('Precio',ascending=False)
